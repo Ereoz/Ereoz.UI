@@ -1,0 +1,303 @@
+﻿<UserControl x:Class="Ereoz.UI.FusionTextEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ereoz.UI"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <DockPanel>
+        <DockPanel.Resources>
+            <Style TargetType="ToolBarTray">
+                <Setter Property="IsLocked"
+                        Value="True" />
+                <Setter Property="Margin"
+                        Value="0 0 16 0" />
+            </Style>
+            <Style TargetType="ToolBar">
+                <Setter Property="ToolBar.OverflowMode"
+                        Value="Never" />
+                <Setter Property="Height"
+                        Value="32" />
+            </Style>
+            <Style TargetType="TextBlock"
+                   x:Key="buttonStyle">
+                <Setter Property="Width"
+                        Value="32" />
+                <Setter Property="FontSize"
+                        Value="14" />
+                <Setter Property="Margin"
+                        Value="0 4" />
+                <Setter Property="FontFamily"
+                        Value="Times New Roman"/>
+                <Setter Property="TextAlignment"
+                        Value="Center" />
+                <Setter Property="VerticalAlignment"
+                        Value="Center" />
+            </Style>
+            <Style TargetType="Path"
+                   x:Key="pathButtonStyle">
+                <Setter Property="Width"
+                        Value="32" />
+                <Setter Property="Fill"
+                        Value="Black" />
+                <Setter Property="Stretch"
+                        Value="Uniform" />
+            </Style>
+        </DockPanel.Resources>
+        <WrapPanel DockPanel.Dock="Top"
+                   Background="AliceBlue">
+            <ToolBarTray>
+                <ToolBar Loaded="ToolBar_Loaded">
+                    <ToggleButton x:Name="btnBold"
+                                  Command="{Binding BoldCommand}">
+                        <TextBlock Text="B"
+                                   FontWeight="SemiBold"
+                                   Style="{StaticResource buttonStyle}" />
+                        <ToggleButton.ToolTip>
+                            <TextBlock Text="Ctrl+B" />
+                        </ToggleButton.ToolTip>
+                    </ToggleButton>
+                    <Separator />
+                    <ToggleButton x:Name="btnItalic"
+                                  Command="{Binding ItalicCommand}">
+                        <TextBlock Text="I"
+                                   FontStyle="Italic"
+                                   Style="{StaticResource buttonStyle}" />
+                        <ToggleButton.ToolTip>
+                            <TextBlock Text="Ctrl+I" />
+                        </ToggleButton.ToolTip>
+                    </ToggleButton>
+                    <Separator />
+                    <ToggleButton x:Name="btnUnderline"
+                                  Command="{Binding UnderlineCommand}">
+                        <TextBlock Text="U"
+                                   TextDecorations="Underline"
+                                   Style="{StaticResource buttonStyle}" />
+                        <ToggleButton.ToolTip>
+                            <TextBlock Text="Ctrl+U" />
+                        </ToggleButton.ToolTip>
+                    </ToggleButton>
+                </ToolBar>
+            </ToolBarTray>
+            <ToolBarTray>
+                <ToolBar Loaded="ToolBar_Loaded">
+                    <ToggleButton x:Name="btnH1"
+                                  Command="{Binding H1Command}">
+                        <TextBlock Text="H1"
+                                   Style="{StaticResource buttonStyle}" />
+                        <ToggleButton.ToolTip>
+                            <TextBlock Text="Ctrl+1" />
+                        </ToggleButton.ToolTip>
+                    </ToggleButton>
+                    <Separator />
+                    <ToggleButton x:Name="btnH2"
+                                  Command="{Binding H2Command}">
+                        <TextBlock Text="H2"
+                                   Style="{StaticResource buttonStyle}" />
+                        <ToggleButton.ToolTip>
+                            <TextBlock Text="Ctrl+2" />
+                        </ToggleButton.ToolTip>
+                    </ToggleButton>
+                    <Separator />
+                    <ToggleButton x:Name="btnH3"
+                                  Command="{Binding H3Command}">
+                        <TextBlock Text="H3"
+                                   Style="{StaticResource buttonStyle}" />
+                        <ToggleButton.ToolTip>
+                            <TextBlock Text="Ctrl+3" />
+                        </ToggleButton.ToolTip>
+                    </ToggleButton>
+                </ToolBar>
+            </ToolBarTray>
+            <ToolBarTray>
+                <ToolBar Loaded="ToolBar_Loaded">
+                    <ToggleButton x:Name="btnBullet"
+                                  Command="{Binding BulletListCommand}">
+                        <Path Style="{StaticResource pathButtonStyle}"
+                              Fill="{Binding ElementName=btnBullet, Path=Foreground}"
+                              Data="M9.3800082,25.513008L32.000013,25.513008 32.000013,26.513008 9.3800082,26.513008z M3.3930134,22.619995C5.2670102,22.619995 6.7860078,24.138999 6.7860078,26.013005 6.7860078,27.88701 5.2670102,29.406014 3.3930134,29.406014 1.5190161,29.406014 1.8479991E-05,27.88701 1.8596656E-05,26.013005 1.8479991E-05,24.138999 1.5190161,22.619995 3.3930134,22.619995z M9.3800082,14.203006L32.000013,14.203006 32.000013,15.203007 9.3800082,15.203007z M3.3930001,11.309986C5.2670202,11.309986 6.7859997,12.828972 6.7859997,14.703001 6.7859997,16.576999 5.2670202,18.095985 3.3930001,18.095985 1.5189795,18.095985 0,16.576999 0,14.703001 0,12.828972 1.5189795,11.309986 3.3930001,11.309986z M9.3800082,2.8930035L32.000013,2.8930035 32.000013,3.8930035 9.3800082,3.8930035z M3.3930134,0C5.2670102,0 6.7860078,1.5189981 6.7860078,3.3929949 6.7860078,5.2669921 5.2670102,6.7859898 3.3930134,6.7859898 1.5190161,6.7859898 1.8479991E-05,5.2669921 1.8596656E-05,3.3929949 1.8479991E-05,1.5189981 1.5190161,0 3.3930134,0z" />
+                        <ToggleButton.ToolTip>
+                            <TextBlock Text="Ctrl+Shift+L" />
+                        </ToggleButton.ToolTip>
+                    </ToggleButton>
+                    <Separator />
+                    <ToggleButton x:Name="btnNumbering"
+                                  Command="{Binding NumberingListCommand}">
+                        <Path Style="{StaticResource pathButtonStyle}"
+                              Fill="{Binding ElementName=btnNumbering, Path=Foreground}"
+                              Data="M8.1129999,27.415005L30.81702,27.415005 30.81702,28.415005 8.1129999,28.415005z M2.4620264,23.779005C3.2750392,23.779005 3.9090495,23.962006 4.3610568,24.328007 4.8130641,24.693007 5.0400677,25.169009 5.0400677,25.753011 5.0400677,26.791013 4.5140591,27.442015 3.4610424,27.704016L3.4610424,27.731016C4.0210514,27.802015 4.4660587,28.006016 4.7910638,28.344017 5.1150689,28.682018 5.2780719,29.09602 5.2780719,29.58902 5.2780719,30.331022 5.0070672,30.919024 4.4630585,31.350025 3.9200497,31.783026 3.1700375,32.000027 2.2130218,32.000027 1.3930087,32.000027 0.725998,31.867027 0.21199006,31.600027L0.21199006,30.076021C0.74399825,30.464024 1.3650084,30.658024 2.0740202,30.658024 2.522027,30.658024 2.8690326,30.562023 3.1190365,30.369022 3.3680408,30.178022 3.4940429,29.910021 3.4940434,29.566021 3.4940429,29.212019 3.3390403,28.938019 3.0310357,28.746019 2.7220304,28.554018 2.2980235,28.457018 1.7580152,28.457018L1.0440034,28.457018 1.0440034,27.116014 1.7040143,27.116014C2.7380305,27.116014 3.2560389,26.773013 3.2560394,26.085011 3.2560389,25.43901 2.8580325,25.115008 2.0640199,25.115008 1.5320111,25.115008 1.0140027,25.287009 0.5119948,25.63101L0.5119948,24.201006C1.0690035,23.920006,1.7200141,23.779005,2.4620264,23.779005z M8.1129999,16.063025L30.81702,16.063025 30.81702,17.063025 8.1129999,17.063025z M2.7229922,11.352004C3.5349946,11.352004 4.1699972,11.556014 4.6260472,11.964004 5.0829511,12.373 5.3099995,12.925002 5.3099995,13.619002 5.3099995,14.547011 4.7539754,15.505996 3.6420491,16.496016L2.007057,17.948012 2.007057,17.982008 5.2329741,17.982008 5.2329741,19.434004 0,19.434004 0,18.070021 2.2780504,15.892012C2.7370298,15.45201 3.0590477,15.083022 3.2460578,14.786025 3.4330671,14.488021 3.5259614,14.175002 3.5259619,13.846999 3.5259614,13.115005 3.1330214,12.750014 2.3450666,12.750014 1.6619684,12.750014 1.0080449,13.021011 0.38305219,13.564009L0.38305219,12.022018C1.0740842,11.576003,1.8530063,11.352004,2.7229922,11.352004z M8.1129999,4.7110152L30.81702,4.7110152 30.81702,5.7110152 8.1129999,5.7110152z M3.732045,0L3.732045,6.6950054 5.3670383,6.6950054 5.3670383,8.0810061 0.33905964,8.0810061 0.33905964,6.6950054 1.9860532,6.6950054 1.9860532,1.7450018 0.29506041,2.111002 0.29506041,0.69200039z" />
+                        <ToggleButton.ToolTip>
+                            <TextBlock Text="Ctrl+Shift+N" />
+                        </ToggleButton.ToolTip>
+                    </ToggleButton>
+                </ToolBar>
+            </ToolBarTray>
+            <ToolBarTray>
+                <ToolBar Loaded="ToolBar_Loaded">
+                    <ToggleButton x:Name="btnQuote"
+                                  Command="{Binding QuoteCommand}">
+                        <TextBlock Text="“”"
+                                   FontFamily="Segoe UI"
+                                   FontWeight="SemiBold"
+                                   Style="{StaticResource buttonStyle}" />
+                        <ToggleButton.ToolTip>
+                            <TextBlock Text="Ctrl+Shift+Q" />
+                        </ToggleButton.ToolTip>
+                    </ToggleButton>
+                    <Separator />
+                    <ToggleButton x:Name="btnBlock"
+                                  Command="{Binding BlockCommand}">
+                        <Border BorderBrush="DimGray"
+                                BorderThickness="1"
+                                CornerRadius="4">
+                            <TextBlock Text="&#60;&#62;"
+                                       FontFamily="Segoe UI"
+                                       FontWeight="SemiBold"
+                                       Style="{StaticResource buttonStyle}"
+                                       Margin="-1 4" />
+                        </Border>
+                        <ToggleButton.ToolTip>
+                            <TextBlock Text="Ctrl+Shift+K" />
+                        </ToggleButton.ToolTip>
+                    </ToggleButton>
+                    <Separator />
+                    <ToggleButton x:Name="btnCode"
+                                  Command="{Binding CodeCommand}">
+                        <TextBlock Text="&#60;/&#62;"
+                                   FontFamily="Segoe UI"
+                                   FontWeight="SemiBold"
+                                   Style="{StaticResource buttonStyle}" />
+                        <ToggleButton.ToolTip>
+                            <TextBlock Text="Ctrl+Shift+C" />
+                        </ToggleButton.ToolTip>
+                    </ToggleButton>
+                    <Separator />
+                    <Button x:Name="btnLineBreak"
+                                  Command="{Binding LineBreakCommand}">
+                        <TextBlock Text="Line&#10;Break"
+                                   FontFamily="Segoe UI"
+                                   FontSize="10"
+                                   Margin="0"
+                                   Style="{StaticResource buttonStyle}" />
+                        <Button.ToolTip>
+                            <TextBlock Text="Alt+Enter" />
+                        </Button.ToolTip>
+                    </Button>
+                </ToolBar>
+            </ToolBarTray>
+            <ToolBarTray>
+                <ToolBar Loaded="ToolBar_Loaded">
+                    <Button x:Name="btnImage"
+                            Command="{Binding ImageCommand}">
+                        <Path Style="{StaticResource pathButtonStyle}"
+                              Data="M10.000005,5.800034C11.987985,5.800034 13.599968,7.4120317 13.599968,9.4000278 13.599968,11.388025 11.987985,13.000022 10.000005,13.000022 8.0120255,13.000022 6.4000419,11.388025 6.4000421,9.4000278 6.4000419,7.4120317 8.0120255,5.800034 10.000005,5.800034z M2,2L2,27.839986 10.200008,18.000022 13.40002,21.000019 6.3565235,29.999999 7.0630164,29.999999 20.799991,12.200017 30,27.58917 30,2z M0,0L32,0 32,31.999999 0,31.999999z" />
+                        <Button.ToolTip>
+                            <TextBlock Text="Ctrl+Shift+I" />
+                        </Button.ToolTip>
+                    </Button>
+                </ToolBar>
+            </ToolBarTray>
+            <ToolBarTray>
+                <ToolBar Loaded="ToolBar_Loaded">
+                    <ToggleButton x:Name="btnLeft"
+                                  Command="{Binding LeftCommand}">
+                        <Path Style="{StaticResource pathButtonStyle}"
+                              Fill="{Binding ElementName=btnLeft, Path=Foreground}"
+                              Data="M0,30L18,30 18,32 0,32z M0,24L28,24 28,26 0,26z M0,18L18,18 18,20 0,20z M0,12L28,12 28,14 0,14z M0,6L18,6 18,8 0,8z M0,0L28,0 28,2 0,2z" />
+                        <ToggleButton.ToolTip>
+                            <TextBlock Text="Ctrl+L" />
+                        </ToggleButton.ToolTip>
+                    </ToggleButton>
+                    <Separator />
+                    <ToggleButton x:Name="btnCenter"
+                                  Command="{Binding CenterCommand}">
+                        <Path Style="{StaticResource pathButtonStyle}"
+                              Fill="{Binding ElementName=btnCenter, Path=Foreground}"
+                              Data="M6,30L24,30 24,32 6,32z M0,24L28,24 28,26 0,26z M6,18L24,18 24,20 6,20z M0,12L28,12 28,14 0,14z M6,6L24,6 24,8 6,8z M0,0L28,0 28,2 0,2z" />
+                        <ToggleButton.ToolTip>
+                            <TextBlock Text="Ctrl+E" />
+                        </ToggleButton.ToolTip>
+                    </ToggleButton>
+                    <Separator />
+                    <ToggleButton x:Name="btnRight"
+                                  Command="{Binding RightCommand}">
+                        <Path Style="{StaticResource pathButtonStyle}"
+                              Fill="{Binding ElementName=btnRight, Path=Foreground}"
+                              Data="M10,30L28,30 28,32 10,32z M0,24L28,24 28,26 0,26z M10,18L28,18 28,20 10,20z M0,12L28,12 28,14 0,14z M10,6L28,6 28,8 10,8z M0,0L28,0 28,2 0,2z" />
+                        <ToggleButton.ToolTip>
+                            <TextBlock Text="Ctrl+R" />
+                        </ToggleButton.ToolTip>
+                    </ToggleButton>
+                    <Separator />
+                    <ToggleButton x:Name="btnJustify"
+                                  Command="{Binding JustifyCommand}">
+                        <Path Style="{StaticResource pathButtonStyle}"
+                              Fill="{Binding ElementName=btnJustify, Path=Foreground}"
+                              Data="M0,30L28,30 28,32 0,32z M0,24L28,24 28,26 0,26z M0,18L28,18 28,20 0,20z M0,12L28,12 28,14 0,14z M0,6L28,6 28,8 0,8z M0,0L28,0 28,2 0,2z" />
+                        <ToggleButton.ToolTip>
+                            <TextBlock Text="Ctrl+J" />
+                        </ToggleButton.ToolTip>
+                    </ToggleButton>
+                </ToolBar>
+            </ToolBarTray>
+        </WrapPanel>
+        <RichTextBox x:Name="rtb"
+                     IsDocumentEnabled="True"
+                     ScrollViewer.VerticalScrollBarVisibility="Auto"
+                     SelectionChanged="RichTextBox_SelectionChanged"
+                     PreviewKeyDown="RichTextBox_PreviewKeyDown"
+                     BorderThickness="0"
+                     Padding="8">
+            <RichTextBox.InputBindings>
+                <KeyBinding Gesture="Ctrl+B"
+                            Command="{Binding BoldCommand}" />
+                <KeyBinding Gesture="Ctrl+I"
+                            Command="{Binding ItalicCommand}" />
+                <KeyBinding Gesture="Ctrl+U"
+                            Command="{Binding UnderlineCommand}" />
+                <KeyBinding Gesture="Ctrl+Shift+L"
+                            Command="{Binding BulletListCommand}" />
+                <KeyBinding Gesture="Ctrl+Shift+N"
+                            Command="{Binding NumberingListCommand}" />
+                <KeyBinding Gesture="Ctrl+Shift+Q"
+                            Command="{Binding QuoteCommand}" />
+                <KeyBinding Gesture="Ctrl+Shift+K"
+                            Command="{Binding BlockCommand}" />
+                <KeyBinding Gesture="Ctrl+Shift+C"
+                            Command="{Binding CodeCommand}" />
+                <KeyBinding Gesture="Alt+Enter"
+                            Command="{Binding LineBreakCommand}" />
+                <KeyBinding Gesture="Ctrl+Shift+I"
+                            Command="{Binding ImageCommand}" />
+                <KeyBinding Gesture="Ctrl+L"
+                            Command="{Binding LeftCommand}" />
+                <KeyBinding Gesture="Ctrl+E"
+                            Command="{Binding CenterCommand}" />
+                <KeyBinding Gesture="Ctrl+R"
+                            Command="{Binding RightCommand}" />
+                <KeyBinding Gesture="Ctrl+J"
+                            Command="{Binding JustifyCommand}" />
+                <KeyBinding Gesture="Ctrl+1"
+                            Command="{Binding H1Command}" />
+                <KeyBinding Modifiers="Control"
+                            Key="NumPad1"
+                            Command="{Binding H1Command}" />
+                <KeyBinding Gesture="Ctrl+2"
+                            Command="{Binding H2Command}" />
+                <KeyBinding Modifiers="Control"
+                            Key="NumPad2"
+                            Command="{Binding H2Command}" />
+                <KeyBinding Gesture="Ctrl+3"
+                            Command="{Binding H3Command}" />
+                <KeyBinding Modifiers="Control"
+                            Key="NumPad3"
+                            Command="{Binding H3Command}" />
+            </RichTextBox.InputBindings>
+            <RichTextBox.CommandBindings>
+                <CommandBinding Command="ApplicationCommands.Paste"
+                                Executed="PasteExecuted" />
+            </RichTextBox.CommandBindings>
+        </RichTextBox>
+    </DockPanel>
+</UserControl>

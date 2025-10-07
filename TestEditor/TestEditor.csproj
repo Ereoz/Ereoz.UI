@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net40</TargetFramework>
+    <UseWPF>true</UseWPF>
+	  <ApplicationIcon>icons8_edit.ico</ApplicationIcon>
+	  <WindowIcon>icons8_edit.ico</WindowIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Ereoz.WindowManagement" Version="0.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Ereoz.UI\Ereoz.UI.csproj" />
+  </ItemGroup>
+
+</Project>
